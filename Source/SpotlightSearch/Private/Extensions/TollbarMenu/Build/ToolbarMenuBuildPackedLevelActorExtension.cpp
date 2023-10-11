@@ -3,7 +3,11 @@
 #include "ToolbarMenuBuildPackedLevelActorExtension.h"
 
 #include <LevelEditor.h>
+
+#if 0 // WITH_DIRECTIVE
 #include <PackedLevelActorUtils.h>
+#endif
+
 #include <Settings/EditorExperimentalSettings.h>
 
 TArray<TSharedPtr<FQuickCommandEntry>> UToolbarMenuBuildPackedLevelActorExtension::GetCommands(const FQuickCommandContext& Context)

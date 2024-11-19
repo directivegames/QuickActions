@@ -43,5 +43,9 @@ TArray<TSharedPtr<FQuickCommandEntry>> UToolbarMenuBuildPackedLevelActorExtensio
 
 bool UToolbarMenuBuildPackedLevelActorExtension::ShouldShow() const
 {
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 5 // WITH_DIRECTIVE
+	return false;
+#else
 	return GetDefault<UEditorExperimentalSettings>()->bPackedLevelActor;
+#endif
 }

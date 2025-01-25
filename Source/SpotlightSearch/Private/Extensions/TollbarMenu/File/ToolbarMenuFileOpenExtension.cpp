@@ -23,7 +23,11 @@ TArray<TSharedPtr<FQuickCommandEntry>> UToolbarMenuFileOpenExtension::GetCommand
 	const TSharedPtr<FQuickCommandEntry> NewLevel = MakeShared<FQuickCommandEntry>(FLevelEditorCommands::Get().NewLevel.ToSharedRef(), LevelEditorCommands);
 	OutCommands.Emplace(NewLevel);
 
-	const TSharedPtr<FQuickCommandEntry> OpenLevel = MakeShared<FQuickCommandEntry>(FLevelEditorCommands::Get().OpenLevel.ToSharedRef(), LevelEditorCommands);
+#if 1 // WITH_DIRECTIVE
+	const TSharedPtr<FQuickCommandEntry> OpenLevel = MakeShared<FQuickCommandEntry>(FGlobalEditorCommonCommands::Get().OpenLevel.ToSharedRef(), MainFrameCommands);
+#else
+	const TSharedPtr<FQuickCommandEntry> OpenLevel = MakeShared<FQuickCommandEntry>(FLevelEditorCommands::Get().OpenLevel.ToSharedRef(), LevelEditorCommands);	
+#endif
 	OutCommands.Emplace(OpenLevel);
 
 	const FMainMRUFavoritesList& MRUFavorites = *MainFrameModule.GetMRUFavoritesList();

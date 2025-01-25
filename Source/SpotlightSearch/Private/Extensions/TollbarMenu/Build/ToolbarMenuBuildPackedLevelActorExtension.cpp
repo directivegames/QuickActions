@@ -3,11 +3,7 @@
 #include "ToolbarMenuBuildPackedLevelActorExtension.h"
 
 #include <LevelEditor.h>
-
-#if 0 // WITH_DIRECTIVE
 #include <PackedLevelActorUtils.h>
-#endif
-
 #include <Settings/EditorExperimentalSettings.h>
 
 TArray<TSharedPtr<FQuickCommandEntry>> UToolbarMenuBuildPackedLevelActorExtension::GetCommands(const FQuickCommandContext& Context)
@@ -39,13 +35,4 @@ TArray<TSharedPtr<FQuickCommandEntry>> UToolbarMenuBuildPackedLevelActorExtensio
 	OutCommands.Emplace(PackActors);
 
 	return OutCommands;
-}
-
-bool UToolbarMenuBuildPackedLevelActorExtension::ShouldShow() const
-{
-#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 5 // WITH_DIRECTIVE
-	return false;
-#else
-	return GetDefault<UEditorExperimentalSettings>()->bPackedLevelActor;
-#endif
 }
